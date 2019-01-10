@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html>
+<head>
+        <%- include ../common/head.ejs %>
+</head>
+<body>
+    <header>
+        <%- include ../common/main-nav.ejs %>
+    </header>
+    <div class="container-fluid page">
+        <div class="row">
+            <%- include ../ngrx/side-nav.ejs %>
+            <main class="col-md-10">
+                
+                <h1>Understanding Immutability </h1>
+                <p>An immutable object is an object whose state cannot be modified after creation</p>
+                <section>
+                    <h4>Why Immutable?</h4>
+                    <ul>
+                        <li>Predictability</li>
+                        <li>Explicit state changes</li>
+                        <li>Performance (change Detection)</li>
+                        <li>Mutation tracking</li>
+                        <li>Undo state changes</li>
+                    </ul>
+                </section>
+                <section>
+                    <h4>Mutability in javascript</h4>
+                    <ul>
+                        <li>Functions</li>
+                        <li>Objects</li>
+                        <li>Arrays</li>
+                    </ul>
+                    <pre class="language-javascript">
+                        <code>
+                            const names = ['Sachin Tendulkar', 'Rahul Dravid'];
+
+                            names.push('M S Dhoni');
+
+                            console.log(names);
+                            // ['Sachin Tendulkar', 'Rahul Dravid', 'M S Dhoni'];
+                        </code>
+                    </pre>
+
+                    <i>Using Javascript objects</i>
+
+                    <pre class="language-javascript">
+                            <code>
+                                const character = { name: 'Rahul Dravid'};
+    
+                                character.role = 'Captain';
+    
+                                console.log(character);
+                                // { name: 'Rahul Dravid', role: 'Captain'}
+                            </code>
+                    </pre>
+                </section>
+                <section>
+                    <h4>Immutability in Javascript</h4>
+                    <ul>
+                        <li>Strings</li>
+                        <li>Numbers</li>
+                    </ul>
+                    <pre class="language-javascript">
+                            <code>
+                                const name = 'Rahul Dravid';
+    
+                                const uppercaseName = name.toUpperCase();
+    
+                                console.log(name, uppercaseName);
+                                // 'Rahul Dravid', 'RAHUL DRAVID'
+                            </code>
+                    </pre>
+                    <i>Objects example</i>
+                    <pre class="language-javascript">
+                            <code>
+                                const character = { name: 'Rahul Dravid'};
+
+                                //Object.assign({}, character, { role: 'Captain'});
+                                const updatedCharacter = { ...character, role: 'Captain'};
+    
+                                console.log(character);
+                                // { name: 'Rahul Dravid'}
+
+                                console.log(updatedCharacter);
+                                // { name: 'Rahul Dravid', role: 'Captain'}
+                            </code>
+                    </pre>
+                    <i>Array example</i>
+                    <pre class="language-javascript">
+                        <code>
+                            const name = ['Sachin Tendulkar', 'Rahul Dravid'];
+
+                            const newNames = [...names, 'M S Dhoni'];
+
+                            console.log(names);
+                            // ['Sachin Tendulkar', 'Rahul Dravid']
+
+                            console.log(newNames);
+                            // ['Sachin Tendulkar', 'Rahul Dravid', 'M S Dhoni']
+                        </code>
+                    </pre>
+                </section>
+            </main>
+        </div>
+
+    </div>
+</body>
+
+</html>

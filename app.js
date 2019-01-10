@@ -25,6 +25,10 @@ app.get('/ngrx/concepts', (req, res) => {
   res.render('ngrx/concepts');
 });
 
+app.get('/ngrx/immutability', (req, res) => {
+  res.render('ngrx/immutability');
+});
+
 app.get('/ngrx/concepts', (req, res) => {
   res.render('ngrx/reflinks');
 });
