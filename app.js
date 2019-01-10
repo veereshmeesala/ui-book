@@ -16,6 +16,15 @@ app.get('/', (req, res) => {
   res.render('index');
 });
 
+
+app.get('/ngrx', (req, res) => {
+  res.render('ngrx/index');
+});
+
+app.get('/react', (req, res) => {
+  res.render('react/index');
+});
+
 app.listen(port, () => {
   console.log(`listening on port ${chalk.green(port)}`);
 });
