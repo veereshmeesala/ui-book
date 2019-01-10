@@ -2,12 +2,7 @@
 <html>
 
 <head>
-    <meta charset="UTF-8">
-    <title>UI-Book</title>
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css" crossorigin="anonymous">
-    <link rel="stylesheet" href="lib/prismjs/prism.css">
-    <link rel="stylesheet" href="styles/app.css">
-    <script src="lib/prismjs/prism.js"></script>
+    <%- include ../common/head.ejs %>
 </head>
 
 <body>
@@ -18,8 +13,60 @@
         <div class="row">
             <%- include ../ngrx/side-nav.ejs %>
             <main class="col-md-10">
-                <h1>Ngrx heading</h1>
-                <p>Sample Content</p>
+                <h1>Ngrx Introduction</h1>
+                <img src="./img/ngrx/ngrx-arch.png" />
+                <section>
+                    <p>Managing the application state using redux, rxjs, angular is nothing but nrgx</p>
+                    <h3>What is Application State?</h3>
+                    <ul>
+                        <li>Server response date</li>
+                        <li>User information</li>
+                        <li>User input</li>
+                        <li>UI State</li>
+                        <li>Router / location state</li>
+                    </ul>
+                </section>
+                <section>
+                    <h3>What is State Management?</h3>
+                    <ul>
+                        <li>Model our app state</li>
+                        <li>Update state</li>
+                        <li>Read state values</li>
+                        <li>Monitor / observer changes to state</li>
+                    </ul>
+                </section>
+                <section>
+                    <h3>Redux : Three Principles</h3>
+                    <ol>
+                        <li>
+                            <h4>Single Source of truth</h4>
+                            <ul>
+                                <li>One State tree inside store</li>
+                                <li>Predictability, maintainability</li>
+                                <li>Universal apps (SSR)</li>
+                                <li>Testing and debugging</li>
+                            </ul>
+                        </li>
+                        
+                        <li>
+                            <h4>State is read-only</h4>
+                            <ul>
+                                <li>Derive properties from state</li>
+                                <li>Dispatch actions to change the state</li>
+                                <li>Immutable update patterns</li>
+                            </ul>
+                        </li>
+                        <li>
+                            <h4>Pure functions update state</h4>
+                            <ul>
+                                <li>Pure functions are reducers</li>
+                                <li>Reducers respond to action types</li>
+                                <li>Reducers return new state</li>
+                            </ul>
+                        </li>
+                    </ol>
+                </section>
+                
             </main>
         </div>
 

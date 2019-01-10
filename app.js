@@ -21,8 +21,20 @@ app.get('/ngrx', (req, res) => {
   res.render('ngrx/index');
 });
 
+app.get('/ngrx/concepts', (req, res) => {
+  res.render('ngrx/concepts');
+});
+
+app.get('/ngrx/concepts', (req, res) => {
+  res.render('ngrx/reflinks');
+});
+
 app.get('/react', (req, res) => {
   res.render('react/index');
+});
+
+app.get('/react/test', (req, res) => {
+  res.render('react/test');
 });
 
 app.listen(port, () => {

@@ -11,3 +11,7 @@ pre[class*="language-"] {
 pre {
    border: 1px solid #ddd;
 }
+
+section {
+   margin: 1em 0 0 0;
+}

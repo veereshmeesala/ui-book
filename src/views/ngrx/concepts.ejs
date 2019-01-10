@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html>
+<head>
+        <%- include ../common/head.ejs %>
+</head>
+<body>
+    <header>
+        <%- include ../common/main-nav.ejs %>
+    </header>
+    <div class="container-fluid page">
+        <div class="row">
+            <%- include ../ngrx/side-nav.ejs %>
+            <main class="col-md-10">
+                
+                <h1>Redux Core Concepts </h1>
+                <ul>
+                    <li>Single State Tree</li>
+                    <li>Actions</li>
+                    <li>Reducers</li>
+                    <li>Store</li>
+                    <li>One-way dataflow</li>
+                </ul>
+                <section>
+                    <h4>Single State Tree</h4>
+                    <ul>
+                        <li>Plain Javascript Object</li>
+                        <li>Componsed by reducers</li>
+                    </ul>
+                </section>
+                <section>
+                    <h4>Actions</h4>
+                    <ul>
+                        <li>
+                            <p>Action has two properties</p>
+                            <ul>
+                                <li><strong>type: </strong> string, describes event
+                                    <p><i>Actions are objects that extend the NgRx Action class with a ‘type’ property.</i></p>
+                                </li>
+                                <li><strong>payload: </strong> optional data
+                                    <p><i>They have an optional ‘payload’ property (naming is up to you but the standard is to name it ‘payload’) for sending in data to the effect/reducer and are dispatched by the store to either run an effect or change state in a reducer</i></p>
+                                </li>
+                            </ul>
+                            <p>
+                                <pre class="language-javascript">
+                                    <code>
+                                        export const FETCH_PRODUCT_SUCCESS = '[Products Api] Fetch single Product success';
+
+                                        export class FetchProductSuccess implements Action {
+                                            type: typeof FETCH_PRODUCT_SUCCESS = FETCH_PRODUCT_SUCCESS;
+                                        
+                                            constructor(readonly payload: Product) {}
+                                        }
+                                    </code>
+                                </pre>
+                            </p>
+                        </li>
+                    </ul>
+                </section>
+                <section>
+                    <h4>Reducers</h4>
+                    <p><i>Reducers are functions which accepts current state as an action and returns new state</i></p>
+                    <ul>
+                        <li>Pure functions</li>
+                        <li>When actions are dispatched
+                            <ul>
+                                <li>Responds to action.type</li>
+                                <li>access to action.payload</li>
+                                <li>Composes new state</li>
+                                <li>Returns new state</li>
+                            </ul>
+                        </li>
+                    </ul>
+                    <img src="http://localhost:3000/img/ngrx/reducer-code-example.png" width="50%" alt="reducer-code">
+                </section>
+                <section>
+                    <h4>Store</h4>
+                    <ul>
+                        <li>State Container</li>
+                        <li>Components interact with store
+                            <ul>
+                                <li>Subscribe to slices of state</li>
+                                <li>Dispatch Actions to the store</li>
+                            </ul>
+                        </li>
+                        <li>Store invokes Reducers with previous State and Action</li>
+                        <li>Reducers compose new state</li>
+                        <li>Store is updated, notifies subscribes</li>
+                        
+                    </ul>
+                </section>
+                <section>
+                    <h4>One-way Dataflow</h4>
+                    <img src="http://localhost:3000/img/ngrx/redux-flow.png" width="50%" alt="reducer-flow">
+                </section>
+            </main>
+        </div>
+
+    </div>
+</body>
+
+</html>
