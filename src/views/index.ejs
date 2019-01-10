@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <title>UI-Book</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css" crossorigin="anonymous">
+    <link rel="stylesheet" href="lib/prismjs/prism.css">
+    <link rel="stylesheet" href="styles/app.css">
+    <script src="lib/prismjs/prism.js"></script>
+</head>
+
+<body>
+    <header>
+        <%- include common/main-nav.ejs %>
+    </header>
+    <div class="container-fluid page">
+        <div class="row">
+            <%- include angular/side-nav.ejs %>
+            <main class="col-md-10">
+                <%- include angular/index.ejs %> 
+            </main>
+        </div>
+
+    </div>
+</body>
+
+</html>
