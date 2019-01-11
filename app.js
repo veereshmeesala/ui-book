@@ -29,7 +29,7 @@ app.get('/ngrx/immutability', (req, res) => {
   res.render('ngrx/immutability');
 });
 
-app.get('/ngrx/concepts', (req, res) => {
+app.get('/ngrx/reflinks', (req, res) => {
   res.render('ngrx/reflinks');
 });
 

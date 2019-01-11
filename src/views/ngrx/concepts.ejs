@@ -1,8 +1,10 @@
 <!DOCTYPE html>
 <html>
+
 <head>
-        <%- include ../common/head.ejs %>
+    <%- include ../common/head.ejs %>
 </head>
+
 <body>
     <header>
         <%- include ../common/main-nav.ejs %>
@@ -10,38 +12,52 @@
     <div class="container-fluid page">
         <div class="row">
             <%- include ../ngrx/side-nav.ejs %>
-            <main class="col-md-10">
-                
-                <h1>Redux Core Concepts </h1>
-                <ul>
-                    <li>Single State Tree</li>
-                    <li>Actions</li>
-                    <li>Reducers</li>
-                    <li>Store</li>
-                    <li>One-way dataflow</li>
-                </ul>
-                <section>
-                    <h4>Single State Tree</h4>
+                <main class="col-md-10">
+
+                    <h1>Redux Core Concepts </h1>
+                    <p>Redux is a predictable state container for JavaScript.</p>
                     <ul>
-                        <li>Plain Javascript Object</li>
-                        <li>Componsed by reducers</li>
+                        <li>Single State Tree</li>
+                        <li>Actions</li>
+                        <li>Reducers</li>
+                        <li>Effects</li>
+                        <li>Store</li>
+                        <li>One-way dataflow</li>
                     </ul>
-                </section>
-                <section>
-                    <h4>Actions</h4>
-                    <ul>
-                        <li>
-                            <p>Action has two properties</p>
-                            <ul>
-                                <li><strong>type: </strong> string, describes event
-                                    <p><i>Actions are objects that extend the NgRx Action class with a ‘type’ property.</i></p>
-                                </li>
-                                <li><strong>payload: </strong> optional data
-                                    <p><i>They have an optional ‘payload’ property (naming is up to you but the standard is to name it ‘payload’) for sending in data to the effect/reducer and are dispatched by the store to either run an effect or change state in a reducer</i></p>
-                                </li>
-                            </ul>
-                            <p>
-                                <pre class="language-javascript">
+                    <section>
+                        <h4>Single State Tree</h4>
+                        <ul>
+                            <li>Plain Javascript Object</li>
+                            <li>Componsed by reducers</li>
+                        </ul>
+                    </section>
+                    <section>
+                        <h4>Actions</h4>
+                        <p>An action is an object that represents an intent to mutate or change the state of our application.
+                            An action could be:
+
+                        </p>
+                        <ul>
+                            <li>Loading data from a REST API.</li>
+                            <li>Opening a sidebar or showing a dialog.</li>
+                            <li>Routing to a different view.</li>
+                        </ul>
+                        <ul>
+                            <li>
+
+                                <p>Action has two properties</p>
+                                <ul>
+                                    <li><strong>type: </strong> string, describes event
+                                        <p><i>Actions are objects that extend the NgRx Action class with a ‘type’ property.</i></p>
+                                    </li>
+                                    <li><strong>payload: </strong> optional data
+                                        <p><i>They have an optional ‘payload’ property (naming is up to you but the standard
+                                                is to name it ‘payload’) for sending in data to the effect/reducer and are
+                                                dispatched by the store to either run an effect or change state in a reducer</i></p>
+                                    </li>
+                                </ul>
+                                <p>
+                                    <pre class="language-javascript">
                                     <code>
                                         export const FETCH_PRODUCT_SUCCESS = '[Products Api] Fetch single Product success';
 
@@ -52,47 +68,120 @@
                                         }
                                     </code>
                                 </pre>
-                            </p>
-                        </li>
-                    </ul>
-                </section>
-                <section>
-                    <h4>Reducers</h4>
-                    <p><i>Reducers are functions which accepts current state as an action and returns new state</i></p>
-                    <ul>
-                        <li>Pure functions</li>
-                        <li>When actions are dispatched
-                            <ul>
-                                <li>Responds to action.type</li>
-                                <li>access to action.payload</li>
-                                <li>Composes new state</li>
-                                <li>Returns new state</li>
-                            </ul>
-                        </li>
-                    </ul>
-                    <img src="http://localhost:3000/img/ngrx/reducer-code-example.png" width="50%" alt="reducer-code">
-                </section>
-                <section>
-                    <h4>Store</h4>
-                    <ul>
-                        <li>State Container</li>
-                        <li>Components interact with store
-                            <ul>
-                                <li>Subscribe to slices of state</li>
-                                <li>Dispatch Actions to the store</li>
-                            </ul>
-                        </li>
-                        <li>Store invokes Reducers with previous State and Action</li>
-                        <li>Reducers compose new state</li>
-                        <li>Store is updated, notifies subscribes</li>
-                        
-                    </ul>
-                </section>
-                <section>
-                    <h4>One-way Dataflow</h4>
-                    <img src="http://localhost:3000/img/ngrx/redux-flow.png" width="50%" alt="reducer-flow">
-                </section>
-            </main>
+                                </p>
+                            </li>
+                        </ul>
+                    </section>
+                    <section>
+                        <h4>Reducers</h4>
+                        <p><i>Reducers are functions which accepts current state as an action and returns new state</i></p>
+                        <ul>
+                            <li>Pure functions</li>
+                            <li>When actions are dispatched
+                                <ul>
+                                    <li>Responds to action.type</li>
+                                    <li>access to action.payload</li>
+                                    <li>Composes new state</li>
+                                    <li>Returns new state</li>
+                                </ul>
+                            </li>
+                        </ul>
+                        <img src="http://localhost:3000/img/ngrx/reducer-code-example.png" width="50%" alt="reducer-code">
+                        <p>A reducer is a function. In fact, a reducer is a pure function and must meet two criteria:</p>
+                        <ol>
+                            <li>The function always evaluates the same result value given the same argument value(s). The
+                                function result value cannot depend on any hidden information or state that may change while
+                                program execution proceeds or between different executions of the program, nor can it depend
+                                on any external input from I/O devices.</li>
+                            <li>Evaluation of the result does not cause any semantically observable side effect or output,
+                                such as mutation of mutable objects or output to I/O devices</li>
+                        </ol>
+                    </section>
+                    <section>
+                        <h4>Effects</h4>
+                        <p>So far we can define action objects that intend to mutate the state of our application, and we
+                            can create reducer() pure functions that will mutate the state of our application. But, what
+                            about actually performing the HTTP request to load our data. This is where effects come into
+                            play.</p>
+                        <p>An effect listens for actions that are dispatched, and performs some side effect, usuaully an
+                            asynchronous request. The benefit to using effects is that it enables us to isolate our async
+                            requests outside of our components, making our components less complex. Now, our components just
+                            dispatch actions and listen for values to be emitted from the store when our state changes.</p>
+                        <p>Let’s look at an effect that loads a data:</p>
+                        <pre class="language-javascript">
+                        <code>
+                                class UsersEffects {
+
+                                    @Effect()
+                                    loadUser: Observable<Action> = this.actions.ofType<LoadUser>('LOAD_USER')
+                                      .pipe(
+                                        map(action => action.payload),
+                                        switchMap(payload => this.userService.getUser(payload.id)),
+                                        map(user => new LoadUserSuccess(user))
+                                        catchError(error => new LoadUserError(error))
+                                      )
+                                  }
+                        </code>
+                    </pre>
+                    </section>
+                    <section>
+                        <h4>Store</h4>
+                        <ul>
+                            <li>State Container</li>
+                            <li>Components interact with store
+                                <ul>
+                                    <li>Subscribe to slices of state</li>
+                                    <li>Dispatch Actions to the store</li>
+                                </ul>
+                            </li>
+                            <li>Store invokes Reducers with previous State and Action</li>
+                            <li>Reducers compose new state</li>
+                            <li>Store is updated, notifies subscribes</li>
+
+                        </ul>
+                    </section>
+                    <section>
+                        <h4>One-way Dataflow</h4>
+                        <img src="http://localhost:3000/img/ngrx/redux-flow.png" width="50%" alt="reducer-flow">
+                    </section>
+                    <section>
+                        <h4>Understanding State Selectors</h4>
+                        <p>Selectors are pure functions that take slices of state as arguments and return some state data
+                            that we can pass to our components. To better understand what selectors are and what they do,
+                            it helps see ngrx state as a data structure - a tree that can be serialised to JSON. Data is
+                            added to the state tree by composing state in reducers - that’s the easy part. Now to get data
+                            out of the state tree, we have to traverse it to find our property of interest - and return it.
+                            That can become more complex, and is where selectors help us out.</p>
+                        <p>You may have already seen the store.select method being used to get data from the store by passing
+                            it a string value:</p>
+                        <pre class="language-javascript">
+                            <code>
+                                this.store.select('products');
+                            </code>
+                        </pre>
+                        <p>The string represents the name of a slice of state in the store and we can expect this function
+                            to return data corresponding to our pizzas property - perhaps an array of pizzas. However, store.select
+                            can also take a function instead, which takes a slice of state and returns a property from the
+                            state (which you’ve likely already seen as well):</p>
+                        <pre class="language-javascript">
+                            <code>
+                                this.store.select(state => state.products);
+                            </code>
+                        </pre>
+                        <p>
+                            Both of these approaches represent the concept of a selector - we are “selecting” state!
+                        </p>
+                        <p> So, when we think of ngrx/store as a database and the selectors are like SELECT in SQL queries
+                            - they gives us back information we want. As our state tree grows deeper, it would become more
+                            complex to get state out of the store.</p>
+                        <p>We may find ourselves writing complex data transformation logic in our components to get exactly
+                            what we need - however we don’t want to do that - and this is where selectors come into play.
+                            Just like with databases, we can perform data transformation from within the store by composing
+                            selectors to just return what we need. We’ll keep our components lean and decoupled from the
+                            Store.
+                        </p>
+                    </section>
+                </main>
         </div>
 
     </div>
