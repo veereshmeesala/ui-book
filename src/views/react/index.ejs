@@ -2,12 +2,7 @@
 <html>
 
 <head>
-    <meta charset="UTF-8">
-    <title>UI-Book</title>
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css" crossorigin="anonymous">
-    <link rel="stylesheet" href="lib/prismjs/prism.css">
-    <link rel="stylesheet" href="styles/app.css">
-    <script src="lib/prismjs/prism.js"></script>
+    <%- include ../common/head.ejs %>
 </head>
 
 <body>
@@ -18,8 +13,212 @@
         <div class="row">
             <%- include ../react/side-nav.ejs %>
             <main class="col-md-10">
-                <h1>React heading</h1>
-                <p>Sample Content</p>
+                <h1>React Lifecyle</h1>
+                <p><a href="http://projects.wojtekmaj.pl/react-lifecycle-methods-diagram/">Life cyle diagram</a></p>
+                <p><a href="https://reactjs.org/docs/react-component.html">React Component lifecycle</a></p>
+                <section>
+                 <img src="img/react/lifecycle.jpg" alt="" width="80%">
+              
+                <h2>Mounting</h2>
+                <p>
+                    These methods are called in the following order when an instance of a component is being created
+                    and inserted into the DOM:
+                    <ul>
+                        <li>
+                            <a href="#constructor">constructor()</a>
+                        </li>
+
+                        <li>
+                            <a href="#getDerivedStateFromProps">static getDerivedStateFromProps()</a>
+                        </li>
+                        <li>
+                            render()
+                        </li>
+                        <li>
+
+                            componentDidMount()
+                        </li>
+                    </ul>
+                </p>
+            </section>
+                <section>
+
+                
+                <h3 id="constructor">constructor()</h3>
+                <p>This is the very first method of the component that is invoked as soon as the component is called</p>
+                <p>The constructor for a React component is called before it is mounted</p>
+                <p>Typically, in React constructors are only used for two purposes:</p>
+                <ul>
+                    <li>Initializing local state by assigning an object to this.state.</li>
+                    <li>Binding event handler methods to an instance.</li>
+                </ul>
+                <p>
+                    <pre class="language-javascript">
+                        <code>
+                                constructor(props) {
+                                    super(props);
+                                    // Don't call this.setState() here!
+                                    this.state = { counter: 0 };
+                                    this.handleClick = this.handleClick.bind(this);
+                                  }
+                        </code>
+                    </pre>
+                </p>
+                <h5>Note</h5>
+                <p>Avoid copying props into state! This is a common mistake:</p>
+                <p>
+                    <pre class="language-javascript">
+                        <code>
+                                constructor(props) {
+                                    super(props);
+                                    // Don't do this!
+                                    this.state = { color: props.color };
+                                   }
+                        </code>
+                    </pre>
+                </p>
+            </section>
+                <section>
+
+                
+                <h3 id="getDerivedStateFromProps">static getDerivedStateFromProps()</h3>
+                <p>getDerivedStateFromProps is invoked right before calling the render method, both on the initial
+                        mount and on subsequent updates. It should return an object to update the state, or null to update
+                        nothing.</p>
+                <p>
+                    <pre class="language-javascript">
+                                <code>
+                                        static getDerivedStateFromProps(nextProps, prevState) {
+                                            if (nextProps.value !== prevState.value) {
+                                              console.log('props changed. Return an object to change state');
+                                              return {
+                                                value: nextProps.value,
+                                              }
+                                            }
+                                </code>
+                            </pre>
+                </p>
+                <p>This function is invoked when the component is mounted as well as receives new props whether they
+                    are changed or not. It is also called if the parent component is re-render, so if you want to only
+                    update change of value, it is vital to have the previous and new value comparison.
+
+
+                </p>
+                <p>
+                    This function should return an object to update state or null because the static function will not
+                    have any acknowledge to this. If your component has state that is initialized from the props
+                    receiving from the parents. This function is right place to sync up your props and state. To do so,
+                    when you need the state to be updated, remember to return the object containing the property that
+                    need to be updated.
+
+                </p>
+            </section>
+                <section>
+                        <h3>render()</h3>
+                        <p>The render() method is the only required method in a class component.</p>
+                </section>
+
+                <section>
+                        <h3>componentDidMount()</h3>
+                        <p>
+                            <pre class="language-javascript">
+                                        <code>
+                                                componentDidMount() {
+                                                    this.fetchData();
+                                                 }
+                                        </code>
+                                    </pre>
+                        </p>
+                        <p>
+                            After a component is mounted, componentDidMount would be invoked. This is the right place to load
+                            any data from endpoint or set up any subscription.
+                            <br />
+                            Calling here setState will trigger re-render, so use this method with caution.
+                        </p>
+                </section>
+                
+                <hr />
+                <section>
+                        <h2>Updating</h2>
+                        <p>
+                                Updating
+                                An update can be caused by changes to props or state. These methods are called in the following order when a component is being re-rendered: 
+                            </p>
+                            <ul>
+                                <li><a href="#getDerivedStateFromProps">getDerivedStateFromProps()</a> </li>
+                                <li>shouldComponentUpdate()</li>
+                                <li>render()</li>
+                                <li>getSnapshotBeforeUpdate()</li>
+                                <li>componentDidUpdate()</li>
+                        </ul>
+                </section>
+                
+                <section>
+                        <h3>shouldComponentUpdate()</h3>
+                        <p>This method will be invoked before rendering when receiving new props or state. By default, when there is a state or prop change, the components will re-rendered.<br />
+                            If you are in a situation when you do not wish the components to have many useless rendering, this method is the wonderful place to verify all the changes you needed before re-rendering. <br />If you do not want to re-render the components, return false , otherwise it is expected to return true .</p>
+                        <h3>getSnapshotBeforeUpdate()</h3>
+                        <p>This method is called right before the virtual DOM is about to make change to the DOM, which allows our components to capture the current values. 
+                            <br />This is a new cycle that has been added since React 16.3 and it is recommended to return a value. <br />Any value returned will be passed as a third parameter in componentDidUpdate .</p>
+                </section>
+  
+                
+                    <section>
+                            <h3>componentDidUpdate()</h3>
+                            <p>componentDidUpdate() is invoked immediately after updating occurs. This method is not called for the initial render. <br />
+                                As this method is only called once after the update, it is a suitable place for implement any side effect operations. However, do not forget to do the comparison between the previous and current props.
+                            </p>
+                    </section>
+                   
+                    <section>
+                        <h2>Unmounting</h2>
+                        <h3>componentWillUnmount</h3>
+                        <p>When a component is unmounted or destroyed, this method will be called. This is a place to do some clean up like</p>
+                        <ul>
+                            <li>
+
+                                Invalidating timers
+                            </li>
+                            <li>
+
+                                Canceling any network request
+                            </li>
+                            <li>
+                                Remove event handlers
+
+                            </li>
+                            <li>
+
+                                Clean up any subscriptions
+                            </li>
+                        </ul>
+                        <p>Calling setState here is useless because there will be no re-rendering on the component.</p>
+                    </section>
+
+                    <section>
+                        <h2>Error Handling</h2>
+                        <p>These methods are called when there is an error during rendering, in a lifecycle method, or in the constructor of any child component.</p>
+                        <h3>componentDidCatch(error, info)</h3>
+                        <p>Since React 16, a new life-cycle has been introduced in order to capture uncaught error happening in the child components. This will enable us to handle the parent component to render the fallback UI when needed instead of crashing the component.</p>
+                        <pre class="language-javascript">
+                            <code>
+                                    componentDidCatch(error, info) {
+                                        this.setState({ hasError: true });
+                                      }
+                                    
+                                      render() {
+                                        if (this.state.hasError) {
+                                         //custom fallback UI
+                                          return <div>Something went wrong.</div>;
+                                        }
+                                        return this.props.children; //render children 
+                                      }
+                            </code>
+                        </pre>
+                    </section>
+
+                    <h4>Other Reference links / Good Reads on Lifecyle methods</h4>
+                <a href="https://code.likeagirl.io/understanding-react-component-life-cycle-49bf4b8674de">Understanding React component life-cycle</a>
             </main>
         </div>
 

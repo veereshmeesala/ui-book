@@ -1,5 +1,6 @@
 .page {
     margin-top: 60px;
+    margin-bottom: 20px;
 }
 
 code[class*="language-"],
@@ -14,4 +15,23 @@ pre {
 
 section {
    margin: 1em 0 0 0;
+}
+
+h1, h2 {
+   color: #253858;
+}
+
+h2 {
+   margin-top: 30px;
+}
+
+h3 {
+   color: #888;
+   text-decoration: underline;
+}
+
+blockquote {
+   padding: 20px;
+   font-style: italic;
+   border-left: 4px solid rgba(0,0,0,.84);
 }

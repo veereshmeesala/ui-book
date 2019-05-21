@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <%- include ../common/head.ejs %>
+</head>
+<body>
+    <header>
+        <%- include ../common/main-nav.ejs %>
+    </header>
+    <div class="container-fluid page">
+        <div class="row">
+            <%- include ../react/side-nav.ejs %>
+            <main class="col-md-10">
+                <h1>React hooks</h1>
+                <h2>Hooks Index</h2>
+                <ol>
+                    <li><a href="#hooksDef">What are hooks</a></li>
+                    <li><a href='#builtinHooks'>Basic built-in Hooks</a></li>
+                    <li><a href="#advancedHooks">Advanced Hook</a></li>
+                    <li><a href='#hookRules'>Rules of hooks</a></li>
+                    <li>custom hooks</li>
+                    <li>Third party hooks which can be used</li>
+                </ol>
+                <h2 id="hooksDef">What are hooks?</h2>
+                <blockquote class='highlight'>React Hooks are functions that let us hook into the React state and lifecycle features from function components.</blockquote>
+                <p>Hooks don’t work inside classes(because they let you use React without classes). By using them, we can totally avoid using lifecycle methods, such as componentDidMount, componentDidUpdate, componentWillUnmount. Instead, we will use built-in hooks likeuseEffect .</p>
+                <h2 id='builtinHooks'>Basic Built-in Hooks :</h2>
+                <ol>
+                    <li>Returns a stateful value and a function to update it — useState (<a href=''>Example</a>)</li>
+                    <li>Lets you perform side effects in function components — useEffect (<a href=''>Example</a>)<</li>
+                    <li>Accepts a context object (the value returned from React.createContext) and returns the current context value, as given by the nearest context provider for the given context — useContext (<a href=''>Example</a>)<</li>
+                </ol>
+                <h2 id='hookRules'>Rules of Hooks</h2>
+                <p>Hooks are JavaScript functions, but they impose two additional rules:</p>
+                <ol>
+                    <li>Don’t call Hooks inside loops, conditions, or nested functions — Only call Hooks at the top level.</li>
+                    <li>Don’t call Hooks from regular JavaScript functions — Only call Hooks from React function components.</li>
+                </ol>
+                <h2>What is Effect Hook</h2>
+                <p>The Effect Hook, useEffect, adds the ability to perform side effects from a function component. It serves the same purpose as componentDidMount, componentDidUpdate, and componentWillUnmount in React classes, but unified into a single API.</p>
+                 <h2>Basic Hooks</h2>
+                <h2>Advanced Hooks</h2>
+                <ol>
+                    <li>useReducer</li>
+                    <li>useCallback</li>
+                    <li>useMemo</li>
+                    <li>useRef</li>
+                    <li>useImperativeHandle</li>
+                    <li>useLayoutEffect</li>
+                    <li>useDebugValue</li>
+                </ol>
+
+            </main>
+        </div>
+
+    </div>
+</body>
+</html>

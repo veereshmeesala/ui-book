@@ -37,10 +37,22 @@ app.get('/react', (req, res) => {
   res.render('react/index');
 });
 
-app.get('/react/test', (req, res) => {
-  res.render('react/test');
+app.get('/react/forms', (req, res) => {
+  res.render('react/forms');
 });
 
-app.listen(port, () => {
+app.get('/react/routing', (req, res) => {
+  res.render('react/routing');
+});
+
+app.get('/react/hooks', (req, res) => {
+  res.render('react/hooks');
+});
+
+app.get('/react/reflinks', (req, res) => {
+  res.render('react/reflinks');
+});
+
+app.listen(3001, () => {
   console.log(`listening on port ${chalk.green(port)}`);
 });
